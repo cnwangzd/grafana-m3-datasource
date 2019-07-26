@@ -1,0 +1,36 @@
+{
+    "name": "M3 Search",
+    "id": "grafana-m3-datasource",
+    "type": "datasource",
+    "partials": {
+        "config": "partials/config.html"
+    },
+    "metrics": true,
+    "annotations": true,
+    "info": {
+        "author": {
+            "name": "Wecise Project"
+        },
+        "description": "JSON data source supporting M3 platform",
+        "logos": {
+            "small": "img/matrix.svg",
+            "large": "img/matrix.svg"
+        },
+        "links": [
+            {
+                "name": "GitHub",
+                "url": "https://github.com/cnwangzd/grafana-m3-datasource"
+            },
+            {
+                "name": "MIT License",
+                "url": "https://github.com/cnwangzd/grafana-m3-datasource/blob/master/LICENSE"
+            }
+        ],
+        "version": "0.8",
+        "updated": "2019-06-23"
+    },
+    "dependencies": {
+        "grafanaVersion": "6.x.x",
+        "plugins": [ ]
+    }
+}
