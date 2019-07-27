@@ -33,6 +33,7 @@ export class GenericDatasource {
   query(options) {
     
     const query = options;
+    console.log(1233,options)
     query.targets = this.buildQueryTargets(options);
     
     if (query.targets.length <= 0) {
@@ -88,11 +89,13 @@ export class GenericDatasource {
       variables: this.getVariables(),
     };
 
+    console.log(1,annotationQuery)
     return this.doRequest({
       url: this.url + '/annotations',
       method: 'POST',
       data: annotationQuery,
     }).then((result) => {
+      console.log(2,result.data)
       return result.data;
     });
   }
@@ -102,7 +105,7 @@ export class GenericDatasource {
     const interpolated = {
       target: this.templateSrv.replace(query, null, 'regex'),
     };
-
+    console.log(query,this.templateSrv.replace(query, null, 'regex'))
     return this.doRequest({
       url: this.url + `/script/exec/js?input=${encodeURIComponent(JSON.stringify(interpolated))}&isfile=true&rawdata=true&filepath=/grafana/getMeta.js`,//}/search`,
       //data: interpolated,
@@ -160,13 +163,16 @@ export class GenericDatasource {
 
           data = JSON.parse(data);
         }
-        
+        console.log(99,target.mxClass)
         return {
           data,
           target: this.templateSrv.replace(target.target, options.scopedVars, 'regex'),
           refId: target.refId,
           hide: target.hide,
           type: target.type,
+          mxClass: target.mxClass,
+          mxAttribute: target.mxAttribute,
+          mxValue:  target.mxValue,
         };
       });
   }

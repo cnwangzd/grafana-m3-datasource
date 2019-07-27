@@ -17,6 +17,65 @@
       <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.target" spellcheck="false" ng-blur="ctrl.onChangeInternal()" />
     </div>
 
+    <div class="gf-form">
+      <label class="gf-form-label width-5 query-keyword">Class</label>
+      <div class="gf-form-select-wrapper">
+          <select
+            class="gf-form-input gf-size-auto"
+            ng-model="ctrl.target.mxClass"
+            ng-options="f.value as f.text for f in ctrl.mxClass"
+            ng-change="ctrl.onChangeInternal()"
+          >
+          </select>
+      </div>
+      <!--gf-form-dropdown model="ctrl.target.class"
+        allow-custom="true"
+        lookup-text="true"
+        get-options="ctrl.getOptions($query)"
+        on-change="ctrl.onChangeInternal()">
+      </gf-form-dropdown-->
+    </div>
+
+    <div class="gf-form">
+      <label class="gf-form-label width-5 query-keyword">Attributes</label>
+      <div class="gf-form-select-wrapper">
+        <select
+            class="gf-form-input gf-size-auto"
+            ng-model="ctrl.target.mxAttribute"
+            ng-options="f.value as f.text for f in ctrl.mxClass[0].attribute"
+            ng-change="ctrl.onChangeInternal()"
+            multiple
+            style="height:100%;overflow:auto;"
+          >
+          </select>
+      </div>
+      <!--gf-form-dropdown model="ctrl.target.attribute"
+        allow-custom="true"
+        lookup-text="true"
+        get-options="ctrl.getOptions($query)"
+        on-change="ctrl.onChangeInternal()">
+      </gf-form-dropdown-->
+    </div>
+
+    <div class="gf-form">
+        <label class="gf-form-label width-5 query-keyword">Value</label>
+        <div class="gf-form-select-wrapper">
+          <select
+              class="gf-form-input gf-size-auto"
+              ng-model="ctrl.target.mxValue"
+              ng-options="f.value as f.text for f in ctrl.mxClass[0].attribute"
+              ng-change="ctrl.onChangeInternal()"
+            >
+            </select>
+        </div>
+        <!--gf-form-dropdown model="ctrl.target.mxValue"
+          allow-custom="true"
+          lookup-text="true"
+          get-options="ctrl.mxClass[0].attribute"
+          on-change="ctrl.onChangeInternal()">
+        </gf-form-dropdown-->
+      </div>
+
     <div ng-if="!ctrl.target.rawQuery">
       <div class="gf-form">
         <label class="gf-form-label width-5 query-keyword">Metric</label>
