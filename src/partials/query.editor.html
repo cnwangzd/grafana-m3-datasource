@@ -12,7 +12,9 @@
         </select>
       </div>
     </div>
-
+  </div>
+  
+  <div class="gf-form-inline">
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
       <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.target" spellcheck="false" ng-blur="ctrl.onChangeInternal()" />
     </div>
@@ -26,6 +28,7 @@
             ng-options="f.value as f.text for f in ctrl.mxClass"
             ng-change="ctrl.onChangeInternal()"
           >
+          <option value="">select class</option>
           </select>
       </div>
       <!--gf-form-dropdown model="ctrl.target.class"
@@ -42,11 +45,12 @@
         <select
             class="gf-form-input gf-size-auto"
             ng-model="ctrl.target.mxAttribute"
-            ng-options="f.value as f.text for f in ctrl.mxClass[0].attribute"
+            ng-options="f.value as f.text for f in ctrl.mxAttribute"
             ng-change="ctrl.onChangeInternal()"
             multiple
-            style="height:35px;overflow:auto;"
+            style="height:200px;overflow:auto;"
           >
+          <option value="">select attribute</option>
           </select>
       </div>
       <!--gf-form-dropdown model="ctrl.target.attribute"
@@ -58,14 +62,15 @@
     </div>
 
     <div class="gf-form">
-        <label class="gf-form-label width-5 query-keyword">Value</label>
+        <label class="gf-form-label width-5 query-keyword">Time</label>
         <div class="gf-form-select-wrapper">
           <select
               class="gf-form-input gf-size-auto"
-              ng-model="ctrl.target.mxValue"
-              ng-options="f.value as f.text for f in ctrl.mxClass[0].attribute"
+              ng-model="ctrl.target.mxTime"
+              ng-options="f.value as f.text for f in ctrl.mxAttribute"
               ng-change="ctrl.onChangeInternal()"
             >
+            <option value="">select time</option>
             </select>
         </div>
         <!--gf-form-dropdown model="ctrl.target.mxValue"
@@ -76,19 +81,41 @@
         </gf-form-dropdown-->
     </div>
 
-    <div class="gf-form gf-form--grow right">
+    <div class="gf-form">
+        <label class="gf-form-label width-5 query-keyword">Value</label>
+        <div class="gf-form-select-wrapper">
+          <select
+              class="gf-form-input gf-size-auto"
+              ng-model="ctrl.target.mxValue"
+              ng-options="f.value as f.text for f in ctrl.mxAttribute"
+              ng-change="ctrl.onChangeInternal()"
+            >
+            <option value="">select value</option>
+            </select>
+        </div>
+        <!--gf-form-dropdown model="ctrl.target.mxValue"
+          allow-custom="true"
+          lookup-text="true"
+          get-options="ctrl.mxClass[0].attribute"
+          on-change="ctrl.onChangeInternal()">
+        </gf-form-dropdown-->
+    </div>
+  </div>
+
+  <div class="gf-form-inline">
+    <div class="gf-form gf-form--grow">
         <label class="gf-form-label gf-form-label--grow query-keyword" ng-click="ctrl.showMxWhere = !ctrl.showMxWhere">Where
           <i class="fa fa-caret-down" ng-show="ctrl.showMxWhere"></i>
           <i class="fa fa-caret-right" ng-hide="ctrl.showMxWhere"></i>
         </label>
       </div>
-    </div>
-    <div class="gf-form-inline" ng-show="ctrl.showMxWhere">
+  </div>
+  <div class="gf-form-inline" ng-show="ctrl.showMxWhere">
         <div class="gf-form gf-form--grow">
           <code-editor content="ctrl.target.mxWhere" data-mode="text" on-change="ctrl.onChangeInternal()" data-max-lines=30>
           </code-editor>
         </div>
-    </div>
+  </div>
 
     <div ng-if="!ctrl.target.rawQuery">
       <div class="gf-form">

@@ -9,6 +9,8 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   private types: any;
   private showJSON: boolean;
   private showMxWhere: boolean;
+  private mxClass: any;
+  private mxAttribute: any;
 
   /** @ngInject **/
   constructor($scope, $injector) {
@@ -32,6 +34,7 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     
     this.requestMxClass().then(response => {
         extend(this, {mxClass: response.data});
+        this.mxClass = this.mxClass;
     });
 
     this.showJSON = false;
@@ -55,6 +58,10 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   }
 
   onChangeInternal() {
+    var tmp = find(this.mxClass,{value:this.target.mxClass});
+    if (tmp) {
+        this.mxAttribute = tmp['attribute'];
+    }
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
