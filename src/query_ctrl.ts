@@ -8,6 +8,7 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
 
   private types: any;
   private showJSON: boolean;
+  private showMxWhere: boolean;
 
   /** @ngInject **/
   constructor($scope, $injector) {
@@ -16,35 +17,35 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
 
     this.target.hide = false;
     this.target.target = this.target.target || 'select metric';
-    console.log(23,this.target)
+    
     if (!this.target.type) {
       this.target.type = this.panelCtrl.panel.type === 'table' ? 'table' : 'timeseries';
     }
     
     this.target.data = this.target.data || '';
+    this.target.mxWhere = this.target.mxWhere || '';
 
     this.types = [
       { text: 'Time series', value: 'timeseries' },
       { text: 'Table', value: 'table' },
-    ];
-
+    ]; 
     
     this.requestMxClass().then(response => {
         extend(this, {mxClass: response.data});
     });
 
     this.showJSON = false;
+    this.showMxWhere = false;
   }
 
   requestMxClass() {  // 请求获取参数列表
     return this.datasource.doRequest({
         url: this.datasource.url + `/script/exec/js?input=null&isfile=true&rawdata=true&filepath=/grafana/getClass.js`,
         method: 'POST',
-      });
+    });
   }
 
   getOptions(query) {
-    console.log(89,query)
     return this.datasource.metricFindQuery(query || '');
   }
 

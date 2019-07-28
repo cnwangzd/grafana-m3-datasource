@@ -163,7 +163,14 @@ export class GenericDatasource {
 
           data = JSON.parse(data);
         }
-        console.log(99,target.mxClass)
+        
+        let mxWhere = isUndefined(target.mxWhere) ? null : target.mxWhere;
+
+        if (typeof mxWhere === 'string' && mxWhere.trim() === '') {
+          mxWhere = null;
+        }
+
+        console.log(99,target)
         return {
           data,
           target: this.templateSrv.replace(target.target, options.scopedVars, 'regex'),
@@ -173,6 +180,7 @@ export class GenericDatasource {
           mxClass: target.mxClass,
           mxAttribute: target.mxAttribute,
           mxValue:  target.mxValue,
+          mxWhere
         };
       });
   }
