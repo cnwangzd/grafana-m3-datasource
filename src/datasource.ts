@@ -164,11 +164,25 @@ export class GenericDatasource {
         
         let mxWhere = isUndefined(target.mxWhere) ? null : target.mxWhere;
 
-        if (typeof mxWhere === 'string' && mxWhere.trim() === '') {
-          mxWhere = null;
+        if (mxWhere !== null) {
+            console.log(19)
+            const match = mxWhere.match(/('(\$.+?)')/g);
+            if (match !== null) {
+              mxWhere
+                .match(/('(\$.+?)')/g)
+                .map((match: string) => {
+                  const replacedMatch = this.templateSrv.replace(match, options.scopedVars, 'regex');
+                  if (replacedMatch !== match) {
+                    mxWhere = mxWhere.replace(match, replacedMatch.substring(0, replacedMatch.length));
+                  }
+                });
+            }
+            
         }
 
-        console.log(99,target)
+        
+
+        console.log(999,mxWhere,data)
         return {
           data,
           target: this.templateSrv.replace(target.target, options.scopedVars, 'regex'),
