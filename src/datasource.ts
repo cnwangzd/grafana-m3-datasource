@@ -180,9 +180,6 @@ export class GenericDatasource {
             
         }
 
-        
-
-        console.log(999,mxWhere,data)
         return {
           data,
           target: this.templateSrv.replace(target.target, options.scopedVars, 'regex'),
