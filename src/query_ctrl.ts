@@ -62,6 +62,7 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     if (tmp) {
         this.mxAttribute = tmp['attribute'];
     }
+
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 

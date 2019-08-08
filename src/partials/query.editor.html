@@ -21,15 +21,18 @@
 
     <div class="gf-form">
       <label class="gf-form-label width-5 query-keyword">Class</label>
-      <div class="gf-form-select-wrapper">
+      <div class="gf-form-select-wrapper gf-form-select-wrapper--has-help-icon">
           <select
             class="gf-form-input gf-size-auto"
             ng-model="ctrl.target.mxClass"
             ng-options="f.value as f.text for f in ctrl.mxClass"
             ng-change="ctrl.onChangeInternal()"
           >
-          <option value="">select class</option>
+            <option value="">select class</option>
           </select>
+          <info-popover mode="right-absolute">
+            Specify class to select attributes
+          </info-popover>
       </div>
       <!--gf-form-dropdown model="ctrl.target.class"
         allow-custom="true"
@@ -41,8 +44,8 @@
 
     <div class="gf-form">
       <label class="gf-form-label width-5 query-keyword">Attributes</label>
-      <div class="gf-form-select-wrapper">
-        <select
+      <div class="gf-form-select-wrapper gf-form-select-wrapper--has-help-icon">
+        <!--select
             class="gf-form-input gf-size-auto"
             ng-model="ctrl.target.mxAttribute"
             ng-options="f.value as f.text for f in ctrl.mxAttribute"
@@ -51,7 +54,15 @@
             style="height:200px;overflow:auto;"
           >
           <option value="">select attribute</option>
-          </select>
+        </select-->
+        <bootstrap-tagsinput ng-model="ctrl.target.mxAttribute" tagclass="label label-tag" placeholder="add attribute">
+        </bootstrap-tagsinput>
+        <info-popover mode="right-absolute">
+          Specify attributes to generate the Key
+          <ul>
+            <li ng-repeat="f in ctrl.mxAttribute">{{f.value}}</li>
+          </ul>
+        </info-popover>
       </div>
       <!--gf-form-dropdown model="ctrl.target.attribute"
         allow-custom="true"
@@ -63,7 +74,7 @@
 
     <div class="gf-form">
         <label class="gf-form-label width-5 query-keyword">Time</label>
-        <div class="gf-form-select-wrapper">
+        <div class="gf-form-select-wrapper gf-form-select-wrapper--has-help-icon">
           <select
               class="gf-form-input gf-size-auto"
               ng-model="ctrl.target.mxTime"
@@ -71,7 +82,10 @@
               ng-change="ctrl.onChangeInternal()"
             >
             <option value="">select time</option>
-            </select>
+          </select>
+          <info-popover mode="right-absolute">
+            Specify time as the xAxis
+          </info-popover>
         </div>
         <!--gf-form-dropdown model="ctrl.target.mxValue"
           allow-custom="true"
@@ -83,7 +97,7 @@
 
     <div class="gf-form">
         <label class="gf-form-label width-5 query-keyword">Value</label>
-        <div class="gf-form-select-wrapper">
+        <div class="gf-form-select-wrapper gf-form-select-wrapper--has-help-icon">
           <select
               class="gf-form-input gf-size-auto"
               ng-model="ctrl.target.mxValue"
@@ -92,6 +106,9 @@
             >
             <option value="">select value</option>
             </select>
+            <info-popover mode="right-absolute">
+              Specify value as the yAxis
+            </info-popover>
         </div>
         <!--gf-form-dropdown model="ctrl.target.mxValue"
           allow-custom="true"
@@ -108,6 +125,9 @@
           <i class="fa fa-caret-down" ng-show="ctrl.showMxWhere"></i>
           <i class="fa fa-caret-right" ng-hide="ctrl.showMxWhere"></i>
         </label>
+        <info-popover mode="right-absolute">
+          Specify where condition,and support for grafana's template variables (Eg: host in ('$host') and param in ('$param'))
+        </info-popover>
       </div>
   </div>
   <div class="gf-form-inline" ng-show="ctrl.showMxWhere">

@@ -165,7 +165,6 @@ export class GenericDatasource {
         let mxWhere = isUndefined(target.mxWhere) ? null : target.mxWhere;
 
         if (mxWhere !== null) {
-            console.log(19)
             const match = mxWhere.match(/('(\$.+?)')/g);
             if (match !== null) {
               mxWhere
