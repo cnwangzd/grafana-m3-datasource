@@ -67,7 +67,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "lodash.isequal": "^4.5.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "systemjs": "^3.1.6"
   },
   "homepage": "https://github.com/cnwangzd/grafana-m3-datasource#readme"
